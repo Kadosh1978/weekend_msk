@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}{{ destination.name }} — Выходные из Москвы{% endblock %}
+
+{% block content %}
+<a class="back-link" href="/">← Назад ко всем направлениям</a>
+
+<section class="hero">
+    <h1>{{ destination.name }}</h1>
+    <p>{{ destination.short_description }}</p>
+</section>
+<section>
+    <div class="cards">
+        <article class="card">
+            <h3>На сколько дней</h3>
+            {% if destination.days_count %}
+                <p>{{ destination.days_count }}</p>
+            {% else %}
+                <p>Пока не указано</p>
+            {% endif %}
+        </article>
+
+        <article class="card">
+            <h3>Лучше ехать</h3>
+            {% if destination.transport_type %}
+                <p>{{ destination.get_transport_type_display }}</p>
+            {% else %}
+                <p>Пока не указано</p>
+            {% endif %}
+        </article>
+    </div>
+</section>
+<section>
+    <h2 class="section-title">О направлении</h2>
+    <div class="card">
+        {% if destination.description %}
+            <p>{{ destination.description }}</p>
+        {% else %}
+            <p>Описание пока не заполнено.</p>
+        {% endif %}
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">Как добраться</h2>
+    <div class="card">
+        {% if destination.how_to_get %}
+            <p>{{ destination.how_to_get }}</p>
+        {% else %}
+            <p>Информация пока не заполнена.</p>
+        {% endif %}
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">Что посмотреть</h2>
+    <div class="card">
+        {% if destination.what_to_see %}
+            <p>{{ destination.what_to_see }}</p>
+        {% else %}
+            <p>Информация пока не заполнена.</p>
+        {% endif %}
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">Бюджет</h2>
+    <div class="card">
+        {% if destination.budget %}
+            <p>{{ destination.budget }}</p>
+        {% else %}
+            <p>Бюджет пока не указан.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
