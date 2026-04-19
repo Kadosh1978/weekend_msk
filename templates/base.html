@@ -2,30 +2,114 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{% block title %}Выходные из Москвы{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Короткие поездки из Москвы на 1–3 дня">
+    <meta name="keywords" content="поездки из Москвы, маршруты, travel, выходные">
+    <meta name="author" content="weekend_msk">
+
+    <meta property="og:title" content="">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="">
+    <meta property="og:site_name" content="">
+    <meta property="og:description" content="">
+    <meta name="twitter:title" content="">
+    <meta name="twitter:image" content="">
+    <meta name="twitter:url" content="">
+    <meta name="twitter:card" content="">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'traveler/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'traveler/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'traveler/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'traveler/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'traveler/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'traveler/css/bootstrap-datepicker.min.css' %}">
+    <link rel="stylesheet" href="{% static 'traveler/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'traveler/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'traveler/css/style.css' %}">
+
+    {# Твои текущие стили оставляем последними, чтобы ничего не сломать #}
+    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+     <link rel="stylesheet" href="{% static 'css/traveler_bridge.css' %}">
+
+    <script src="{% static 'traveler/js/modernizr-2.6.2.min.js' %}"></script>
 </head>
 <body>
-    <header class="site-header">
-        <div class="container">
-            <a class="logo" href="/">Выходные из Москвы</a>
-            <nav class="nav">
-                <a href="/">Главная</a>
-            </nav>
-        </div>
-    </header>
 
-    <main class="container">
-        {% block content %}
-        {% endblock %}
-    </main>
+    <div class="gtco-loader"></div>
 
-    <footer class="site-footer">
-        <div class="container">
-            <p>Сайт о поездках из Москвы на 1–3 дня</p>
-        </div>
-    </footer>
+    <div id="page">
+        <nav class="gtco-nav" role="navigation">
+            <div class="gtco-container">
+                <div class="row">
+                    <div class="col-sm-4 col-xs-12">
+                        <div id="gtco-logo">
+                            <a href="/">Выходные из Москвы</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-8 text-right menu-1">
+                        <ul>
+                            <li><a href="/">Главная</a></li>
+                            <li><a href="/destinations/">Направления</a></li>
+                            <li><a href="/routes/">Маршруты</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <footer id="gtco-footer" role="contentinfo">
+            <div class="gtco-container">
+                <div class="row row-pb-md">
+                    <div class="col-md-6">
+                        <div class="gtco-widget">
+                            <h3>Выходные из Москвы</h3>
+                            <p>Маршруты на 1–3 дня: куда поехать, как добраться и что посмотреть.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-md-push-1">
+                        <div class="gtco-widget">
+                            <h3>Навигация</h3>
+                            <ul class="gtco-footer-links">
+                                <li><a href="/">Главная</a></li>
+                                <li><a href="/destinations/">Направления</a></li>
+                                <li><a href="/routes/">Маршруты</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row copyright">
+                    <div class="col-md-12">
+                        <p class="pull-left">
+                            <small class="block">&copy; Выходные из Москвы</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{% static 'traveler/js/jquery.min.js' %}"></script>
+    <script src="{% static 'traveler/js/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'traveler/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'traveler/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'traveler/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'traveler/js/jquery.countTo.js' %}"></script>
+    <script src="{% static 'traveler/js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'traveler/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'traveler/js/magnific-popup-options.js' %}"></script>
+    <script src="{% static 'traveler/js/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'traveler/js/main.js' %}"></script>
 </body>
 </html>

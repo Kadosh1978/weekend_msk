@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Все маршруты — Выходные из Москвы{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <a class="back-link" href="/">← Назад на главную</a>
+
+        <div class="page-hero">
+            <div class="page-hero-content">
+                <p class="section-kicker">Все маршруты</p>
+                <h1 class="page-title">Готовые планы коротких поездок</h1>
+                <p class="page-subtitle">
+                    Список всех опубликованных маршрутов по направлениям:
+                    быстро выбрать поездку и открыть нужную страницу.
+                </p>
+            </div>
+
+            <div class="page-hero-side">
+                <div class="info-card">
+                    <h3>Всего маршрутов</h3>
+                    <div class="info-list">
+                        <div class="info-row">
+                            <span>Опубликовано</span>
+                            <strong>{{ routes|length }}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards cards-3">
+            {% for route in routes %}
+                <article class="card destination-card">
+                    <div class="card-top">
+                        <h3>{{ route.title }}</h3>
+                        <span class="tag">{{ route.destination.name }}</span>
+                    </div>
+
+                    <p class="card-text">{{ route.short_description }}</p>
+
+                    <div class="meta-list">
+                        <span class="meta-item">
+                            Направление: {{ route.destination.name }}
+                        </span>
+                    </div>
+
+                    <a class="card-link" href="{{ route.get_absolute_url }}">Открыть маршрут</a>
+                </article>
+            {% empty %}
+                <div class="empty-box">
+                    <h3>Пока маршрутов нет</h3>
+                    <p>Добавь маршруты через админку, и они появятся здесь.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

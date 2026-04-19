@@ -1,0 +1,141 @@
+.section {
+    padding: 80px 0;
+}
+
+.section-soft {
+    background: #f8fafc;
+}
+
+.section-head {
+    margin-bottom: 30px;
+}
+
+.section-kicker {
+    margin: 0 0 10px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #00d8c0;
+}
+
+.section-title {
+    margin: 0;
+    font-size: 36px;
+    line-height: 1.2;
+    color: #1f1f1f;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.cards-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    padding: 28px;
+}
+
+.destination-card h3 {
+    margin-top: 0;
+    margin-bottom: 14px;
+    font-size: 28px;
+    color: #2d2d2d;
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+
+.card-text {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 18px;
+}
+
+.meta-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.meta-item {
+    color: #777;
+    font-size: 14px;
+}
+
+.card-link {
+    color: #00d8c0;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.card-link:hover {
+    color: #00bfa6;
+}
+
+.tag {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(0, 216, 192, 0.12);
+    color: #00bfa6;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.empty-box {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 28px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.promo-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 32px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.promo-text {
+    margin-top: 12px;
+    color: #666;
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 800px;
+}
+
+@media (max-width: 991px) {
+    .cards,
+    .cards-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .promo-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+}

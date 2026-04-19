@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Все направления — Выходные из Москвы{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <a class="back-link" href="/">← Назад на главную</a>
+
+        <div class="page-hero">
+            <div class="page-hero-content">
+                <p class="section-kicker">Все направления</p>
+                <h1 class="page-title">Куда можно поехать из Москвы</h1>
+                <p class="page-subtitle">
+                    Подборка всех направлений на 1–3 дня:
+                    короткие поездки, понятные бюджеты и готовые ориентиры.
+                </p>
+            </div>
+
+            <div class="page-hero-side">
+                <div class="info-card">
+                    <h3>Всего направлений</h3>
+                    <div class="info-list">
+                        <div class="info-row">
+                            <span>Опубликовано</span>
+                            <strong>{{ destinations|length }}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards cards-3">
+            {% for destination in destinations %}
+                <article class="card destination-card">
+                    <div class="card-top">
+                        <h3>{{ destination.name }}</h3>
+
+                        {% if destination.days_count %}
+                            <span class="tag">{{ destination.days_count }}</span>
+                        {% endif %}
+                    </div>
+
+                    <p class="card-text">{{ destination.short_description }}</p>
+
+                    <div class="meta-list">
+                        {% if destination.transport_type %}
+                            <span class="meta-item">
+                                Лучше ехать: {{ destination.get_transport_type_display }}
+                            </span>
+                        {% endif %}
+
+                        {% if destination.budget %}
+                            <span class="meta-item">
+                                Бюджет: {{ destination.budget }}
+                            </span>
+                        {% endif %}
+                    </div>
+
+                    <a class="card-link" href="{{ destination.get_absolute_url }}">Открыть направление</a>
+                </article>
+            {% empty %}
+                <div class="empty-box">
+                    <h3>Пока направлений нет</h3>
+                    <p>Добавь их через админку, и они появятся здесь.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

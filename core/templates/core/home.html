@@ -1,29 +1,172 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Выходные из Москвы{% endblock %}
 
 {% block content %}
-<section class="hero">
-    <h1>Готовые поездки из Москвы на выходные</h1>
-    <p>
-        Маршруты на 1–3 дня: как добраться, где остановиться,
-        что посмотреть и сколько это стоит.
-    </p>
+<header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner" style="background-image: url({% static 'traveler/images/img_bg_2.jpg' %})">
+    <div class="overlay"></div>
+    <div class="gtco-container">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-left">
+                <div class="row row-mt-15em">
+                    <div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
+                        <span class="intro-text-small">Готовые поездки на выходные</span>
+                        <h1>Куда уехать из Москвы на 1–3 дня</h1>
+                        <p style="color: white; font-size: 20px; max-width: 700px;">
+                            Подборки направлений и простые маршруты:
+                            как добраться, что посмотреть и сколько примерно это стоит.
+                        </p>
+                        <p style="margin-top: 30px;">
+                            <a href="#destinations" class="btn btn-primary">Смотреть направления</a>
+                            <a href="/routes/" class="btn btn-white btn-lg">Смотреть маршруты</a>
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 col-md-push-1 animate-box" data-animate-effect="fadeInRight">
+                        <div class="form-wrap">
+                            <div class="tab">
+                                <div class="tab-content">
+                                    <div class="tab-content-inner active">
+                                        <h3>Быстро выбрать поездку</h3>
+
+                                        <div class="row form-group">
+                                            <div class="col-md-12">
+                                                <p><strong>1–3 дня</strong><br>короткие поездки</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row form-group">
+                                            <div class="col-md-12">
+                                                <p><strong>Маршруты</strong><br>без лишней воды</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row form-group">
+                                            <div class="col-md-12">
+                                                <p><strong>Бюджет</strong><br>понятные ориентиры</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row form-group">
+                                            <div class="col-md-12">
+                                                <a href="/destinations/" class="btn btn-primary btn-block">Открыть все направления</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="section" id="destinations">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <p class="section-kicker">Популярные направления</p>
+                <h2 class="section-title">Короткие поездки, с которых удобно начать</h2>
+            </div>
+        </div>
+
+        <div class="cards cards-3">
+            {% for destination in destinations %}
+                <article class="card destination-card">
+                    <div class="card-top">
+                        <h3>{{ destination.name }}</h3>
+
+                        {% if destination.days_count %}
+                            <span class="tag">{{ destination.days_count }}</span>
+                        {% endif %}
+                    </div>
+
+                    <p class="card-text">{{ destination.short_description }}</p>
+
+                    <div class="meta-list">
+                        {% if destination.transport_type %}
+                            <span class="meta-item">
+                                Лучше ехать: {{ destination.get_transport_type_display }}
+                            </span>
+                        {% endif %}
+
+                        {% if destination.budget %}
+                            <span class="meta-item">
+                                Бюджет: {{ destination.budget }}
+                            </span>
+                        {% endif %}
+                    </div>
+
+                    <a class="card-link" href="{{ destination.get_absolute_url }}">Открыть направление</a>
+                </article>
+            {% empty %}
+                <div class="empty-box">
+                    <h3>Пока направлений нет</h3>
+                    <p>Добавь их через админку, и они появятся на главной.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 </section>
 
-<section>
-    <h2 class="section-title">Популярные направления</h2>
+<section class="section">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <p class="section-kicker">Свежие маршруты</p>
+                <h2 class="section-title">Готовые планы поездок</h2>
+            </div>
+        </div>
 
-    <div class="cards">
-        {% for destination in destinations %}
-            <article class="card">
-                <h3>{{ destination.name }}</h3>
-                <p>{{ destination.short_description }}</p>
-                <a href="{{ destination.get_absolute_url }}">Смотреть маршрут</a>
-            </article>
-        {% empty %}
-            <p>Пока направлений нет.</p>
-        {% endfor %}
+        <div class="cards cards-3">
+            {% for route in latest_routes %}
+                <article class="card destination-card">
+                    <div class="card-top">
+                        <h3>{{ route.title }}</h3>
+                        <span class="tag">{{ route.destination.name }}</span>
+                    </div>
+
+                    <p class="card-text">{{ route.short_description }}</p>
+
+                    <div class="meta-list">
+                        <span class="meta-item">
+                            Направление: {{ route.destination.name }}
+                        </span>
+                    </div>
+
+                    <a class="card-link" href="{{ route.get_absolute_url }}">Открыть маршрут</a>
+                </article>
+            {% empty %}
+                <div class="empty-box">
+                    <h3>Пока маршрутов нет</h3>
+                    <p>Добавь маршруты через админку, и они появятся здесь.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section section-soft">
+    <div class="container">
+        <div class="promo-box">
+            <div>
+                <p class="section-kicker">Что дальше</p>
+                <h2 class="section-title">Из этого уже можно собрать нормальный travel-сайт</h2>
+                <p class="promo-text">
+                    У тебя уже есть направления, страницы городов и маршруты.
+                    Следующий шаг — сделать отдельные списки всех направлений и всех маршрутов,
+                    а потом аккуратно добавить пагинацию.
+                </p>
+            </div>
+
+            <div class="promo-actions">
+                <a class="btn btn-primary" href="/destinations/">Смотреть направления</a>
+            </div>
+        </div>
     </div>
 </section>
 {% endblock %}
