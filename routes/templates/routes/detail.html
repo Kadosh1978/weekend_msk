@@ -4,45 +4,49 @@
 
 {% block content %}
 <section class="section">
-    <div class="container">
-        <a class="back-link" href="{{ route.destination.get_absolute_url }}">← Назад к направлению</a>
+    <div class="gtco-container">
+        <div style="margin-bottom: 22px; display: flex; gap: 10px; flex-wrap: wrap;">
+            <a href="{{ route.destination.get_absolute_url }}" class="btn btn-white btn-sm" style="text-decoration: none;">← К направлению</a>
+            <a href="/routes/" class="btn btn-white btn-sm" style="text-decoration: none;">Все маршруты</a>
+            <span class="btn btn-primary btn-sm" style="color: #ffffff !important; cursor: default;">Маршрут</span>
+        </div>
 
-        <div class="page-hero route-hero">
-            <div class="page-hero-content">
+        <div class="section-head">
+            <div>
                 <p class="section-kicker">Маршрут</p>
-                <h1 class="page-title">{{ route.title }}</h1>
-                <p class="page-subtitle">{{ route.short_description }}</p>
-            </div>
-
-            <div class="page-hero-side">
-                <div class="info-card">
-                    <h3>Привязка</h3>
-                    <div class="info-list">
-                        <div class="info-row">
-                            <span>Направление</span>
-                            <strong>{{ route.destination.name }}</strong>
-                        </div>
-                    </div>
-
-                    <a class="mini-link" href="{{ route.destination.get_absolute_url }}">
-                        Открыть страницу направления
-                    </a>
-                </div>
+                <h1 class="section-title">{{ route.title }}</h1>
+                <p class="promo-text">
+                    {{ route.short_description }}
+                </p>
             </div>
         </div>
 
-        <div class="content-grid">
-            <div class="content-main">
-                <section class="content-section">
-                    <h2>О маршруте</h2>
-                    <div class="card prose-card">
-                        {% if route.content %}
-                            <p>{{ route.content }}</p>
-                        {% else %}
-                            <p>Полный текст маршрута пока не заполнен.</p>
-                        {% endif %}
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card" style="margin-bottom: 30px;">
+                    <h2 class="section-title" style="font-size: 32px; margin-bottom: 18px;">О маршруте</h2>
+
+                    {% if route.content %}
+                        <p class="card-text" style="margin-bottom: 0;">{{ route.content }}</p>
+                    {% else %}
+                        <p class="card-text" style="margin-bottom: 0;">Полный текст маршрута пока не заполнен.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-wrap" style="background: #fff; padding: 28px; border-radius: 8px; margin-bottom: 30px;">
+                    <h3 style="margin-top: 0; margin-bottom: 20px;">Привязка</h3>
+
+                    <div style="margin-bottom: 18px;">
+                        <strong style="display: block; margin-bottom: 6px;">Направление</strong>
+                        <span style="color: #666;">{{ route.destination.name }}</span>
                     </div>
-                </section>
+
+                    <a href="{{ route.destination.get_absolute_url }}" class="btn btn-primary btn-block" style="color: #ffffff !important; text-decoration: none;">
+                        Открыть страницу направления
+                    </a>
+                </div>
             </div>
         </div>
     </div>

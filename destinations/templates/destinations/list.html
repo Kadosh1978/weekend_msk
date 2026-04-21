@@ -4,35 +4,32 @@
 
 {% block content %}
 <section class="section">
-    <div class="container">
-        <a class="back-link" href="/">← Назад на главную</a>
+    <div class="gtco-container">
+<div style="margin-bottom: 18px; font-size: 14px; color: #8a8a8a;">
+    <a href="/" style="color: #8a8a8a; text-decoration: none;">Главная</a>
+    <span style="margin: 0 8px;">/</span>
+    <span style="color: #00d8c0;">Направления</span>
+</div>
 
-        <div class="page-hero">
-            <div class="page-hero-content">
+        <div class="section-head">
+            <div>
                 <p class="section-kicker">Все направления</p>
-                <h1 class="page-title">Куда можно поехать из Москвы</h1>
-                <p class="page-subtitle">
-                    Подборка всех направлений на 1–3 дня:
-                    короткие поездки, понятные бюджеты и готовые ориентиры.
+                <h1 class="section-title">Куда можно поехать из Москвы</h1>
+                <p class="promo-text">
+                    Подборка всех направлений на 1–3 дня: короткие поездки,
+                    понятные бюджеты и готовые ориентиры.
                 </p>
             </div>
+        </div>
 
-            <div class="page-hero-side">
-                <div class="info-card">
-                    <h3>Всего направлений</h3>
-                    <div class="info-list">
-                        <div class="info-row">
-                            <span>Опубликовано</span>
-                            <strong>{{ destinations|length }}</strong>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div style="margin-bottom: 24px;">
+            <h2 class="section-title" style="font-size: 32px; margin-bottom: 10px;">Всего направлений</h2>
+            <p class="card-text" style="margin-bottom: 0;">Опубликовано {{ destinations|length }}</p>
         </div>
 
         <div class="cards cards-3">
             {% for destination in destinations %}
-                <article class="card destination-card">
+                <a href="{{ destination.get_absolute_url }}" class="card destination-card card-clickable">
                     <div class="card-top">
                         <h3>{{ destination.name }}</h3>
 
@@ -57,8 +54,8 @@
                         {% endif %}
                     </div>
 
-                    <a class="card-link" href="{{ destination.get_absolute_url }}">Открыть направление</a>
-                </article>
+                    <span class="card-link">Открыть направление</span>
+                </a>
             {% empty %}
                 <div class="empty-box">
                     <h3>Пока направлений нет</h3>

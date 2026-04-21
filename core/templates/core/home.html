@@ -4,7 +4,7 @@
 {% block title %}Выходные из Москвы{% endblock %}
 
 {% block content %}
-<header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner" style="background-image: url({% static 'traveler/images/img_bg_2.jpg' %})">
+<header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner" style="background-image: url({% static 'traveler/images/orig.jpeg' %})">
     <div class="overlay"></div>
     <div class="gtco-container">
         <div class="row">
@@ -18,55 +18,47 @@
                             как добраться, что посмотреть и сколько примерно это стоит.
                         </p>
                         <p style="margin-top: 30px;">
-                            <a href="#destinations" class="btn btn-primary">Смотреть направления</a>
+                            <a href="/destinations/" class="btn btn-primary btn-lg" style="color: #ffffff !important;">Смотреть направления</a>
                             <a href="/routes/" class="btn btn-white btn-lg">Смотреть маршруты</a>
                         </p>
                     </div>
 
                     <div class="col-md-4 col-md-push-1 animate-box" data-animate-effect="fadeInRight">
-                        <div class="form-wrap">
-                            <div class="tab">
-                                <div class="tab-content">
-                                    <div class="tab-content-inner active">
-                                        <h3>Быстро выбрать поездку</h3>
+    <div class="form-wrap">
+        <div class="tab">
+            <div class="tab-content">
+                <div class="tab-content-inner active">
+                    <h3>Быстро выбрать поездку</h3>
 
-                                        <div class="row form-group">
-                                            <div class="col-md-12">
-                                                <p><strong>1–3 дня</strong><br>короткие поездки</p>
-                                            </div>
-                                        </div>
+                    <a href="/destinations/" class="trip-choice">
+                        <strong>1–3 дня</strong>
+                        <span>короткие поездки</span>
+                    </a>
 
-                                        <div class="row form-group">
-                                            <div class="col-md-12">
-                                                <p><strong>Маршруты</strong><br>без лишней воды</p>
-                                            </div>
-                                        </div>
+                    <a href="/routes/" class="trip-choice">
+                        <strong>Маршруты</strong>
+                        <span>без лишней воды</span>
+                    </a>
 
-                                        <div class="row form-group">
-                                            <div class="col-md-12">
-                                                <p><strong>Бюджет</strong><br>понятные ориентиры</p>
-                                            </div>
-                                        </div>
+                    <a href="/destinations/" class="trip-choice">
+                        <strong>Бюджет</strong>
+                        <span>понятные ориентиры</span>
+                    </a>
 
-                                        <div class="row form-group">
-                                            <div class="col-md-12">
-                                                <a href="/destinations/" class="btn btn-primary btn-block">Открыть все направления</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="row form-group" style="margin-top: 18px;">
+                        <div class="col-md-12">
+                            <a href="/destinations/" class="btn btn-primary btn-block" style="color: #ffffff !important;">Открыть все направления</a>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
+</div>
 </header>
 
 <section class="section" id="destinations">
-    <div class="container">
+    <div class="gtco-container">
         <div class="section-head">
             <div>
                 <p class="section-kicker">Популярные направления</p>
@@ -76,7 +68,7 @@
 
         <div class="cards cards-3">
             {% for destination in destinations %}
-                <article class="card destination-card">
+                <a href="{{ destination.get_absolute_url }}" class="card destination-card card-clickable">
                     <div class="card-top">
                         <h3>{{ destination.name }}</h3>
 
@@ -101,8 +93,8 @@
                         {% endif %}
                     </div>
 
-                    <a class="card-link" href="{{ destination.get_absolute_url }}">Открыть направление</a>
-                </article>
+                    <span class="card-link">Открыть направление</span>
+                </a>
             {% empty %}
                 <div class="empty-box">
                     <h3>Пока направлений нет</h3>
@@ -114,7 +106,7 @@
 </section>
 
 <section class="section">
-    <div class="container">
+    <div class="gtco-container">
         <div class="section-head">
             <div>
                 <p class="section-kicker">Свежие маршруты</p>
@@ -124,7 +116,7 @@
 
         <div class="cards cards-3">
             {% for route in latest_routes %}
-                <article class="card destination-card">
+                <a href="{{ route.get_absolute_url }}" class="card destination-card card-clickable">
                     <div class="card-top">
                         <h3>{{ route.title }}</h3>
                         <span class="tag">{{ route.destination.name }}</span>
@@ -138,8 +130,8 @@
                         </span>
                     </div>
 
-                    <a class="card-link" href="{{ route.get_absolute_url }}">Открыть маршрут</a>
-                </article>
+                    <span class="card-link">Открыть маршрут</span>
+                </a>
             {% empty %}
                 <div class="empty-box">
                     <h3>Пока маршрутов нет</h3>
@@ -151,7 +143,7 @@
 </section>
 
 <section class="section section-soft">
-    <div class="container">
+    <div class="gtco-container">
         <div class="promo-box">
             <div>
                 <p class="section-kicker">Что дальше</p>
@@ -164,7 +156,7 @@
             </div>
 
             <div class="promo-actions">
-                <a class="btn btn-primary" href="/destinations/">Смотреть направления</a>
+                <a href="/destinations/" class="btn btn-primary btn-lg" style="color: #ffffff !important;">Смотреть направления</a>
             </div>
         </div>
     </div>

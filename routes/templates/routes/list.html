@@ -4,35 +4,31 @@
 
 {% block content %}
 <section class="section">
-    <div class="container">
-        <a class="back-link" href="/">← Назад на главную</a>
+    <div class="gtco-container">
+        <div style="margin-bottom: 22px; display: flex; gap: 10px; flex-wrap: wrap;">
+            <a href="/" class="btn btn-white btn-sm" style="text-decoration: none;">Главная</a>
+            <span class="btn btn-primary btn-sm" style="color: #ffffff !important; cursor: default;">Маршруты</span>
+        </div>
 
-        <div class="page-hero">
-            <div class="page-hero-content">
+        <div class="section-head">
+            <div>
                 <p class="section-kicker">Все маршруты</p>
-                <h1 class="page-title">Готовые планы коротких поездок</h1>
-                <p class="page-subtitle">
+                <h1 class="section-title">Готовые планы коротких поездок</h1>
+                <p class="promo-text">
                     Список всех опубликованных маршрутов по направлениям:
                     быстро выбрать поездку и открыть нужную страницу.
                 </p>
             </div>
+        </div>
 
-            <div class="page-hero-side">
-                <div class="info-card">
-                    <h3>Всего маршрутов</h3>
-                    <div class="info-list">
-                        <div class="info-row">
-                            <span>Опубликовано</span>
-                            <strong>{{ routes|length }}</strong>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div style="margin-bottom: 24px;">
+            <h2 class="section-title" style="font-size: 32px; margin-bottom: 10px;">Всего маршрутов</h2>
+            <p class="card-text" style="margin-bottom: 0;">Опубликовано {{ routes|length }}</p>
         </div>
 
         <div class="cards cards-3">
             {% for route in routes %}
-                <article class="card destination-card">
+                <a href="{{ route.get_absolute_url }}" class="card destination-card card-clickable">
                     <div class="card-top">
                         <h3>{{ route.title }}</h3>
                         <span class="tag">{{ route.destination.name }}</span>
@@ -46,8 +42,8 @@
                         </span>
                     </div>
 
-                    <a class="card-link" href="{{ route.get_absolute_url }}">Открыть маршрут</a>
-                </article>
+                    <span class="card-link">Открыть маршрут</span>
+                </a>
             {% empty %}
                 <div class="empty-box">
                     <h3>Пока маршрутов нет</h3>
