@@ -1,10 +1,14 @@
 {% extends "base.html" %}
-{% load static %}
 
 {% block title %}{{ destination.name }} — Выходные из Москвы{% endblock %}
 
 {% block content %}
+
+{% if destination.slug == "kolomna" %}
+<section class="destination-hero destination-hero--photo" style="background-image: linear-gradient(rgba(20, 32, 44, 0.52), rgba(20, 32, 44, 0.52)), url(/static/traveler/images/destinations/kolomna/kolomna_hero.jpg);">
+{% else %}
 <section class="destination-hero destination-hero--photo" style="background-image: linear-gradient(rgba(20, 32, 44, 0.52), rgba(20, 32, 44, 0.52)), url(/static/traveler/images/orig.jpeg);">
+{% endif %}
     <div class="gtco-container">
         <div class="destination-hero__content">
             <p class="section-kicker section-kicker--light">Направление</p>
@@ -15,9 +19,6 @@
                 <a href="/routes/" class="btn btn-primary btn-lg" style="color: #ffffff !important;">Смотреть маршруты</a>
                 <a href="/destinations/" class="btn btn-white btn-lg">Все направления</a>
             </div>
-        </div>
-    </div>
-</section>
         </div>
     </div>
 </section>
@@ -62,12 +63,43 @@
                         {% endif %}
                     </div>
                 </section>
+
+                {% if destination.slug == "kolomna" %}
+                <section class="content-section">
+                    <h2>Коломна в деталях</h2>
+
+                    <div class="gallery-grid">
+                        <figure class="gallery-card">
+                            <img src="/static/traveler/images/destinations/kolomna/kolomna_kremlin.jpg" alt="Коломенский кремль" class="gallery-image">
+                            <figcaption>
+                                <strong>Коломенский кремль</strong><br>
+                                Главная историческая достопримечательность города.
+                            </figcaption>
+                        </figure>
+
+                        <figure class="gallery-card">
+                            <img src="/static/traveler/images/destinations/kolomna/kolomna_pastila.jpg" alt="Коломенская пастила" class="gallery-image">
+                            <figcaption>
+                                <strong>Коломенская пастила</strong><br>
+                                Один из самых узнаваемых символов поездки.
+                            </figcaption>
+                        </figure>
+
+                        <figure class="gallery-card">
+                            <img src="/static/traveler/images/destinations/kolomna/kolomna_walk.jpg" alt="Исторический центр Коломны" class="gallery-image">
+                            <figcaption>
+                                <strong>Исторический центр</strong><br>
+                                Уютные улицы и спокойная прогулочная атмосфера.
+                            </figcaption>
+                        </figure>
+                    </div>
+                </section>
+                {% endif %}
             </div>
 
             <aside class="content-side">
                 <div class="info-card sticky-card">
                     <h3>Кратко</h3>
-
                     <div class="info-list">
                         <div class="info-row">
                             <span>На сколько дней</span>
@@ -124,7 +156,6 @@
                         <h3>{{ route.title }}</h3>
                         <span class="tag">{{ destination.name }}</span>
                     </div>
-
                     <p class="card-text">{{ route.short_description }}</p>
                     <span class="card-link">Открыть маршрут</span>
                 </a>
@@ -137,4 +168,5 @@
         </div>
     </div>
 </section>
+
 {% endblock %}
