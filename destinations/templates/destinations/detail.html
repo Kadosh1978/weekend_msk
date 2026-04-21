@@ -4,99 +4,106 @@
 {% block title %}{{ destination.name }} — Выходные из Москвы{% endblock %}
 
 {% block content %}
-<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url({% static 'traveler/images/orig.jpeg' %});">
-    <div class="overlay"></div>
+<section class="destination-hero destination-hero--photo" style="background-image: linear-gradient(rgba(20, 32, 44, 0.52), rgba(20, 32, 44, 0.52)), url(/static/traveler/images/orig.jpeg);">
     <div class="gtco-container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 text-center">
-                <div class="display-t">
-                    <div class="display-tc animate-box" data-animate-effect="fadeIn">
-                        <p class="section-kicker" style="color: rgba(255,255,255,.75);">Направление</p>
-                        <h1>{{ destination.name }}</h1>
-                        <p style="color: rgba(255,255,255,.9); font-size: 20px;">
-                            {{ destination.short_description }}
-                        </p>
-                        <p>
-                            <a href="/destinations/" class="btn btn-primary btn-lg" style="color: #ffffff !important;">Все направления</a>
-                            <a href="/routes/" class="btn btn-white btn-lg">Все маршруты</a>
-                        </p>
-                    </div>
-                </div>
+        <div class="destination-hero__content">
+            <p class="section-kicker section-kicker--light">Направление</p>
+            <h1 class="destination-hero__title">{{ destination.name }}</h1>
+            <p class="destination-hero__subtitle">{{ destination.short_description }}</p>
+
+            <div class="destination-hero__actions">
+                <a href="/routes/" class="btn btn-primary btn-lg" style="color: #ffffff !important;">Смотреть маршруты</a>
+                <a href="/destinations/" class="btn btn-white btn-lg">Все направления</a>
             </div>
         </div>
     </div>
-</header>
+</section>
+        </div>
+    </div>
+</section>
 
 <section class="section">
     <div class="gtco-container">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="card" style="margin-bottom: 30px;">
-                    <h2 class="section-title" style="font-size: 32px; margin-bottom: 18px;">О направлении</h2>
-                    {% if destination.description %}
-                        <p class="card-text" style="margin-bottom: 0;">{{ destination.description }}</p>
-                    {% else %}
-                        <p class="card-text" style="margin-bottom: 0;">Описание пока не заполнено.</p>
-                    {% endif %}
-                </div>
+        <div class="page-top-actions">
+            <a href="/destinations/" class="soft-button">← Ко всем направлениям</a>
+        </div>
 
-                <div class="card" style="margin-bottom: 30px;">
-                    <h2 class="section-title" style="font-size: 32px; margin-bottom: 18px;">Как добраться</h2>
-                    {% if destination.how_to_get %}
-                        <p class="card-text" style="margin-bottom: 0;">{{ destination.how_to_get }}</p>
-                    {% else %}
-                        <p class="card-text" style="margin-bottom: 0;">Информация пока не заполнена.</p>
-                    {% endif %}
-                </div>
+        <div class="content-grid">
+            <div class="content-main">
+                <section class="content-section">
+                    <h2>О направлении</h2>
+                    <div class="card prose-card">
+                        {% if destination.description %}
+                            <p>{{ destination.description }}</p>
+                        {% else %}
+                            <p>Описание пока не заполнено.</p>
+                        {% endif %}
+                    </div>
+                </section>
 
-                <div class="card">
-                    <h2 class="section-title" style="font-size: 32px; margin-bottom: 18px;">Что посмотреть</h2>
-                    {% if destination.what_to_see %}
-                        <p class="card-text" style="margin-bottom: 0;">{{ destination.what_to_see }}</p>
-                    {% else %}
-                        <p class="card-text" style="margin-bottom: 0;">Информация пока не заполнена.</p>
-                    {% endif %}
-                </div>
+                <section class="content-section">
+                    <h2>Как добраться</h2>
+                    <div class="card prose-card">
+                        {% if destination.how_to_get %}
+                            <p>{{ destination.how_to_get }}</p>
+                        {% else %}
+                            <p>Информация пока не заполнена.</p>
+                        {% endif %}
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2>Что посмотреть</h2>
+                    <div class="card prose-card">
+                        {% if destination.what_to_see %}
+                            <p>{{ destination.what_to_see }}</p>
+                        {% else %}
+                            <p>Информация пока не заполнена.</p>
+                        {% endif %}
+                    </div>
+                </section>
             </div>
 
-            <div class="col-md-4">
-                <div class="form-wrap" style="background: #fff; padding: 28px; border-radius: 8px; margin-bottom: 30px;">
-                    <h3 style="margin-top: 0; margin-bottom: 20px;">Кратко</h3>
+            <aside class="content-side">
+                <div class="info-card sticky-card">
+                    <h3>Кратко</h3>
 
-                    <div style="margin-bottom: 18px;">
-                        <strong style="display: block; margin-bottom: 6px;">На сколько дней</strong>
-                        <span style="color: #666;">
-                            {% if destination.days_count %}
-                                {{ destination.days_count }}
-                            {% else %}
-                                Не указано
-                            {% endif %}
-                        </span>
-                    </div>
+                    <div class="info-list">
+                        <div class="info-row">
+                            <span>На сколько дней</span>
+                            <strong>
+                                {% if destination.days_count %}
+                                    {{ destination.days_count }}
+                                {% else %}
+                                    Не указано
+                                {% endif %}
+                            </strong>
+                        </div>
 
-                    <div style="margin-bottom: 18px;">
-                        <strong style="display: block; margin-bottom: 6px;">Лучше ехать</strong>
-                        <span style="color: #666;">
-                            {% if destination.transport_type %}
-                                {{ destination.get_transport_type_display }}
-                            {% else %}
-                                Не указано
-                            {% endif %}
-                        </span>
-                    </div>
+                        <div class="info-row">
+                            <span>Лучше ехать</span>
+                            <strong>
+                                {% if destination.transport_type %}
+                                    {{ destination.get_transport_type_display }}
+                                {% else %}
+                                    Не указано
+                                {% endif %}
+                            </strong>
+                        </div>
 
-                    <div>
-                        <strong style="display: block; margin-bottom: 6px;">Бюджет</strong>
-                        <span style="color: #666;">
-                            {% if destination.budget %}
-                                {{ destination.budget }}
-                            {% else %}
-                                Не указан
-                            {% endif %}
-                        </span>
+                        <div class="info-row">
+                            <span>Бюджет</span>
+                            <strong>
+                                {% if destination.budget %}
+                                    {{ destination.budget }}
+                                {% else %}
+                                    Не указан
+                                {% endif %}
+                            </strong>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </aside>
         </div>
     </div>
 </section>
@@ -112,16 +119,15 @@
 
         <div class="cards cards-3">
             {% for route in routes %}
-                <article class="card destination-card">
+                <a href="{{ route.get_absolute_url }}" class="card destination-card card-clickable">
                     <div class="card-top">
                         <h3>{{ route.title }}</h3>
                         <span class="tag">{{ destination.name }}</span>
                     </div>
 
                     <p class="card-text">{{ route.short_description }}</p>
-
-                    <a class="card-link" href="{{ route.get_absolute_url }}">Открыть маршрут</a>
-                </article>
+                    <span class="card-link">Открыть маршрут</span>
+                </a>
             {% empty %}
                 <div class="empty-box">
                     <h3>Пока маршрутов нет</h3>
