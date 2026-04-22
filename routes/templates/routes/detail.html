@@ -3,22 +3,34 @@
 {% block title %}{{ route.title }} — Выходные из Москвы{% endblock %}
 
 {% block content %}
+
+{% if route.destination.slug == "kolomna" %}
+<section class="destination-hero destination-hero--photo" style="background-image: linear-gradient(rgba(20, 32, 44, 0.52), rgba(20, 32, 44, 0.52)), url(/static/traveler/images/destinations/kolomna/kolomna_hero.jpg);">
+{% elif route.destination.slug == "tula" %}
+<section class="destination-hero destination-hero--photo" style="background-image: linear-gradient(rgba(20, 32, 44, 0.52), rgba(20, 32, 44, 0.52)), url(/static/traveler/images/destinations/tula/tula_hero.jpg);">
+{% elif route.destination.slug == "kazan" %}
+<section class="destination-hero destination-hero--photo" style="background-image: linear-gradient(rgba(20, 32, 44, 0.52), rgba(20, 32, 44, 0.52)), url(/static/traveler/images/destinations/kazan/kazan_hero.jpg);">
+{% else %}
+<section class="destination-hero destination-hero--photo" style="background-image: linear-gradient(rgba(20, 32, 44, 0.52), rgba(20, 32, 44, 0.52)), url(/static/traveler/images/orig.jpeg);">
+{% endif %}
+    <div class="gtco-container">
+        <div class="destination-hero__content">
+            <p class="section-kicker section-kicker--light">Маршрут</p>
+            <h1 class="destination-hero__title">{{ route.title }}</h1>
+            <p class="destination-hero__subtitle">{{ route.short_description }}</p>
+
+            <div class="destination-hero__actions">
+                <a href="{{ route.destination.get_absolute_url }}" class="btn btn-primary btn-lg" style="color: #ffffff !important;">К направлению</a>
+                <a href="/routes/" class="btn btn-white btn-lg">Все маршруты</a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="section">
     <div class="gtco-container">
-        <div style="margin-bottom: 22px; display: flex; gap: 10px; flex-wrap: wrap;">
-            <a href="{{ route.destination.get_absolute_url }}" class="btn btn-white btn-sm" style="text-decoration: none;">← К направлению</a>
-            <a href="/routes/" class="btn btn-white btn-sm" style="text-decoration: none;">Все маршруты</a>
-            <span class="btn btn-primary btn-sm" style="color: #ffffff !important; cursor: default;">Маршрут</span>
-        </div>
-
-        <div class="section-head">
-            <div>
-                <p class="section-kicker">Маршрут</p>
-                <h1 class="section-title">{{ route.title }}</h1>
-                <p class="promo-text">
-                    {{ route.short_description }}
-                </p>
-            </div>
+        <div class="page-top-actions">
+            <span class="soft-button" style="cursor: default;">Маршрут</span>
         </div>
 
         <div class="row">
@@ -51,4 +63,5 @@
         </div>
     </div>
 </section>
+
 {% endblock %}

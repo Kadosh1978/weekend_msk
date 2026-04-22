@@ -6,6 +6,10 @@
 
 {% if destination.slug == "kolomna" %}
 <section class="destination-hero destination-hero--photo" style="background-image: linear-gradient(rgba(20, 32, 44, 0.52), rgba(20, 32, 44, 0.52)), url(/static/traveler/images/destinations/kolomna/kolomna_hero.jpg);">
+{% elif destination.slug == "tula" %}
+<section class="destination-hero destination-hero--photo" style="background-image: linear-gradient(rgba(20, 32, 44, 0.52), rgba(20, 32, 44, 0.52)), url(/static/traveler/images/destinations/tula/tula_hero.jpg);">
+{% elif destination.slug == "kazan" %}
+<section class="destination-hero destination-hero--photo" style="background-image: linear-gradient(rgba(20, 32, 44, 0.52), rgba(20, 32, 44, 0.52)), url(/static/traveler/images/destinations/kazan/kazan_hero.jpg);">
 {% else %}
 <section class="destination-hero destination-hero--photo" style="background-image: linear-gradient(rgba(20, 32, 44, 0.52), rgba(20, 32, 44, 0.52)), url(/static/traveler/images/orig.jpeg);">
 {% endif %}
@@ -67,7 +71,6 @@
                 {% if destination.slug == "kolomna" %}
                 <section class="content-section">
                     <h2>Коломна в деталях</h2>
-
                     <div class="gallery-grid">
                         <figure class="gallery-card">
                             <img src="/static/traveler/images/destinations/kolomna/kolomna_kremlin.jpg" alt="Коломенский кремль" class="gallery-image">
@@ -90,6 +93,64 @@
                             <figcaption>
                                 <strong>Исторический центр</strong><br>
                                 Уютные улицы и спокойная прогулочная атмосфера.
+                            </figcaption>
+                        </figure>
+                    </div>
+                </section>
+                {% elif destination.slug == "tula" %}
+                <section class="content-section">
+                    <h2>Тула в деталях</h2>
+                    <div class="gallery-grid">
+                        <figure class="gallery-card">
+                            <img src="/static/traveler/images/destinations/tula/tula_kremlin.jpeg" alt="Тульский кремль" class="gallery-image">
+                            <figcaption>
+                                <strong>Тульский кремль</strong><br>
+                                Главная историческая точка города и лучший старт прогулки.
+                            </figcaption>
+                        </figure>
+
+                        <figure class="gallery-card">
+                            <img src="/static/traveler/images/destinations/tula/tula_embankment.jpg" alt="Казанская набережная в Туле" class="gallery-image">
+                            <figcaption>
+                                <strong>Казанская набережная</strong><br>
+                                Удобное место для спокойной прогулки по центру.
+                            </figcaption>
+                        </figure>
+
+                        <figure class="gallery-card">
+                            <img src="/static/traveler/images/destinations/tula/tula_pryanik.jpg" alt="Тульский пряник" class="gallery-image">
+                            <figcaption>
+                                <strong>Тульский пряник</strong><br>
+                                Местный символ и важная часть впечатления от поездки.
+                            </figcaption>
+                        </figure>
+                    </div>
+                </section>
+                {% elif destination.slug == "kazan" %}
+                <section class="content-section">
+                    <h2>Казань в деталях</h2>
+                    <div class="gallery-grid">
+                        <figure class="gallery-card">
+                            <img src="/static/traveler/images/destinations/kazan/kazan_kremlin.jpg" alt="Казанский кремль" class="gallery-image">
+                            <figcaption>
+                                <strong>Казанский кремль</strong><br>
+                                Главная историческая точка города и обязательное место для первой прогулки.
+                            </figcaption>
+                        </figure>
+
+                        <figure class="gallery-card">
+                            <img src="/static/traveler/images/destinations/kazan/kazan_street.jpg" alt="Центр Казани" class="gallery-image">
+                            <figcaption>
+                                <strong>Центр Казани</strong><br>
+                                Пешеходные улицы, атмосфера города и удобный маршрут для прогулки.
+                            </figcaption>
+                        </figure>
+
+                        <figure class="gallery-card">
+                            <img src="/static/traveler/images/destinations/kazan/kazan_food.jpg" alt="Татарская кухня" class="gallery-image">
+                            <figcaption>
+                                <strong>Татарская кухня</strong><br>
+                                Местный колорит, ради которого в Казани стоит сделать отдельную остановку.
                             </figcaption>
                         </figure>
                     </div>
