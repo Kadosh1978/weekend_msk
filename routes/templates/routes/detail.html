@@ -20,8 +20,8 @@
             <p class="destination-hero__subtitle">{{ route.short_description }}</p>
 
             <div class="destination-hero__actions">
-                <a href="{{ route.destination.get_absolute_url }}" class="btn btn-primary btn-lg" style="color: #ffffff !important;">К направлению</a>
-                <a href="/routes/" class="btn btn-white btn-lg">Все маршруты</a>
+                <a href="{{ route.destination.get_absolute_url }}" class="btn btn-white btn-lg">← К направлению</a>
+                <a href="/routes/" class="btn btn-primary btn-lg" style="color: #ffffff !important;">Все маршруты</a>
             </div>
         </div>
     </div>
@@ -33,33 +33,71 @@
             <span class="soft-button" style="cursor: default;">Маршрут</span>
         </div>
 
-        <div class="row">
-            <div class="col-md-8">
-                <div class="card" style="margin-bottom: 30px;">
-                    <h2 class="section-title" style="font-size: 32px; margin-bottom: 18px;">О маршруте</h2>
-
-                    {% if route.content %}
-                        <p class="card-text" style="margin-bottom: 0;">{{ route.content }}</p>
-                    {% else %}
-                        <p class="card-text" style="margin-bottom: 0;">Полный текст маршрута пока не заполнен.</p>
-                    {% endif %}
+        <div class="row" style="margin-bottom: 30px;">
+            <div class="col-md-4">
+                <div class="card" style="margin-bottom: 20px;">
+                    <h3 style="margin-top: 0; margin-bottom: 12px;">Ориентировочное время</h3>
+                    <p class="card-text" style="margin-bottom: 0;">
+                        {% if route.estimated_time %}
+                            {{ route.estimated_time }}
+                        {% else %}
+                            Пока не указано
+                        {% endif %}
+                    </p>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <div class="form-wrap" style="background: #fff; padding: 28px; border-radius: 8px; margin-bottom: 30px;">
-                    <h3 style="margin-top: 0; margin-bottom: 20px;">Привязка</h3>
+                <div class="card" style="margin-bottom: 20px;">
+                    <h3 style="margin-top: 0; margin-bottom: 12px;">Подходит кому</h3>
+                    <p class="card-text" style="margin-bottom: 0; white-space: pre-line;">
+                        {% if route.suitable_for %}
+                            {{ route.suitable_for }}
+                        {% else %}
+                            Пока не указано
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
 
-                    <div style="margin-bottom: 18px;">
-                        <strong style="display: block; margin-bottom: 6px;">Направление</strong>
-                        <span style="color: #666;">{{ route.destination.name }}</span>
-                    </div>
-
+            <div class="col-md-4">
+                <div class="card" style="margin-bottom: 20px;">
+                    <h3 style="margin-top: 0; margin-bottom: 12px;">Направление</h3>
+                    <p class="card-text" style="margin-bottom: 16px;">{{ route.destination.name }}</p>
                     <a href="{{ route.destination.get_absolute_url }}" class="btn btn-primary btn-block" style="color: #ffffff !important; text-decoration: none;">
                         Открыть страницу направления
                     </a>
                 </div>
             </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 30px;">
+            <h2 class="section-title" style="font-size: 32px; margin-bottom: 18px;">Что входит в маршрут</h2>
+
+            <p class="card-text" style="margin-bottom: 0; white-space: pre-line;">
+                {% if route.route_includes %}
+                    {{ route.route_includes }}
+                {% else %}
+                    Пока не заполнено.
+                {% endif %}
+            </p>
+        </div>
+
+        <div class="card" style="margin-bottom: 30px;">
+            <h2 class="section-title" style="font-size: 32px; margin-bottom: 18px;">О маршруте</h2>
+
+            <p class="card-text" style="margin-bottom: 0; white-space: pre-line;">
+                {% if route.content %}
+                    {{ route.content }}
+                {% else %}
+                    Полный текст маршрута пока не заполнен.
+                {% endif %}
+            </p>
+        </div>
+
+        <div class="destination-hero__actions">
+            <a href="{{ route.destination.get_absolute_url }}" class="btn btn-white btn-lg">← К направлению</a>
+            <a href="/routes/" class="btn btn-primary btn-lg" style="color: #ffffff !important;">Все маршруты</a>
         </div>
     </div>
 </section>
