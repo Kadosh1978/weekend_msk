@@ -28,6 +28,31 @@ class Destination(models.Model):
         blank=True,
     )
 
+    hero_image = models.ImageField(
+        "Hero фото",
+        upload_to="destinations/heroes/",
+        blank=True,
+        null=True,
+    )
+    gallery_image_1 = models.ImageField(
+        "Галерея фото 1",
+        upload_to="destinations/gallery/",
+        blank=True,
+        null=True,
+    )
+    gallery_image_2 = models.ImageField(
+        "Галерея фото 2",
+        upload_to="destinations/gallery/",
+        blank=True,
+        null=True,
+    )
+    gallery_image_3 = models.ImageField(
+        "Галерея фото 3",
+        upload_to="destinations/gallery/",
+        blank=True,
+        null=True,
+    )
+
     is_published = models.BooleanField("Опубликовано", default=True)
     created_at = models.DateTimeField("Создано", auto_now_add=True)
 
