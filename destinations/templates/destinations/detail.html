@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}{{ destination.name }} — Выходные из Москвы{% endblock %}
+{% block title %}{{ destination.name }} на выходные из Москвы — маршрут, фото и советы{% endblock %}
 
 {% block content %}
 
-{% if destination.slug == "kolomna" %}
+{% if destination.hero_image %}
+<section class="destination-hero destination-hero--photo" style="background-image: linear-gradient(rgba(20, 32, 44, 0.52), rgba(20, 32, 44, 0.52)), url('{{ destination.hero_image.url }}');">
+{% elif destination.slug == "kolomna" %}
 <section class="destination-hero destination-hero--photo" style="background-image: linear-gradient(rgba(20, 32, 44, 0.52), rgba(20, 32, 44, 0.52)), url(/static/traveler/images/destinations/kolomna/kolomna_hero.jpg);">
 {% elif destination.slug == "tula" %}
 <section class="destination-hero destination-hero--photo" style="background-image: linear-gradient(rgba(20, 32, 44, 0.52), rgba(20, 32, 44, 0.52)), url(/static/traveler/images/destinations/tula/tula_hero.jpg);">
@@ -68,7 +70,42 @@
                     </div>
                 </section>
 
-                {% if destination.slug == "kolomna" %}
+                {% if destination.gallery_image_1 or destination.gallery_image_2 or destination.gallery_image_3 %}
+                <section class="content-section">
+                    <h2>{{ destination.name }} в деталях</h2>
+                    <div class="gallery-grid">
+                        {% if destination.gallery_image_1 %}
+                        <figure class="gallery-card">
+                            <img src="{{ destination.gallery_image_1.url }}" alt="{{ destination.name }} — фото 1" class="gallery-image">
+                            <figcaption>
+                                <strong>{{ destination.name }}</strong><br>
+                                Фото из галереи направления.
+                            </figcaption>
+                        </figure>
+                        {% endif %}
+
+                        {% if destination.gallery_image_2 %}
+                        <figure class="gallery-card">
+                            <img src="{{ destination.gallery_image_2.url }}" alt="{{ destination.name }} — фото 2" class="gallery-image">
+                            <figcaption>
+                                <strong>{{ destination.name }}</strong><br>
+                                Фото из галереи направления.
+                            </figcaption>
+                        </figure>
+                        {% endif %}
+
+                        {% if destination.gallery_image_3 %}
+                        <figure class="gallery-card">
+                            <img src="{{ destination.gallery_image_3.url }}" alt="{{ destination.name }} — фото 3" class="gallery-image">
+                            <figcaption>
+                                <strong>{{ destination.name }}</strong><br>
+                                Фото из галереи направления.
+                            </figcaption>
+                        </figure>
+                        {% endif %}
+                    </div>
+                </section>
+                {% elif destination.slug == "kolomna" %}
                 <section class="content-section">
                     <h2>Коломна в деталях</h2>
                     <div class="gallery-grid">
@@ -157,7 +194,7 @@
                 </section>
                 {% endif %}
             </div>
-            
+
             <aside class="content-side">
                 <div class="info-card sticky-card">
                     <h3>Кратко</h3>
