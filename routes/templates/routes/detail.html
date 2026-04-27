@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block title %}{{ route.title }} — готовый маршрут из Москвы{% endblock %}
+{% block meta_description %}{{ route.short_description }}{% endblock %}
+{% block og_title %}{{ route.title }} — готовый маршрут из Москвы{% endblock %}
+{% block og_description %}{{ route.short_description }}{% endblock %}
+{% block twitter_title %}{{ route.title }} — готовый маршрут из Москвы{% endblock %}
 
 {% block content %}
 

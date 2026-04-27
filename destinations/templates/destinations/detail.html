@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block title %}{{ destination.name }} на выходные из Москвы — маршрут, фото и советы{% endblock %}
+{% block meta_description %}{{ destination.short_description }}{% endblock %}
+{% block og_title %}{{ destination.name }} на выходные из Москвы{% endblock %}
+{% block og_description %}{{ destination.short_description }}{% endblock %}
+{% block twitter_title %}{{ destination.name }} на выходные из Москвы{% endblock %}
 
 {% block content %}
 
@@ -78,8 +82,19 @@
                         <figure class="gallery-card">
                             <img src="{{ destination.gallery_image_1.url }}" alt="{{ destination.name }} — фото 1" class="gallery-image">
                             <figcaption>
-                                <strong>{{ destination.name }}</strong><br>
-                                Фото из галереи направления.
+                                {% if destination.slug == "kolomna" %}
+                                    <strong>Коломенский кремль</strong><br>
+                                    Главная историческая достопримечательность города.
+                                {% elif destination.slug == "tula" %}
+                                    <strong>Тульский кремль</strong><br>
+                                    Главная историческая точка города и лучший старт прогулки.
+                                {% elif destination.slug == "kazan" %}
+                                    <strong>Казанский кремль</strong><br>
+                                    Главная историческая точка города и обязательное место для первой прогулки.
+                                {% else %}
+                                    <strong>{{ destination.name }}</strong><br>
+                                    Фото из галереи направления.
+                                {% endif %}
                             </figcaption>
                         </figure>
                         {% endif %}
@@ -88,8 +103,19 @@
                         <figure class="gallery-card">
                             <img src="{{ destination.gallery_image_2.url }}" alt="{{ destination.name }} — фото 2" class="gallery-image">
                             <figcaption>
-                                <strong>{{ destination.name }}</strong><br>
-                                Фото из галереи направления.
+                                {% if destination.slug == "kolomna" %}
+                                    <strong>Коломенская пастила</strong><br>
+                                    Один из самых узнаваемых символов поездки.
+                                {% elif destination.slug == "tula" %}
+                                    <strong>Казанская набережная</strong><br>
+                                    Удобное место для спокойной прогулки по центру.
+                                {% elif destination.slug == "kazan" %}
+                                    <strong>Центр Казани</strong><br>
+                                    Пешеходные улицы, атмосфера города и удобный маршрут для прогулки.
+                                {% else %}
+                                    <strong>{{ destination.name }}</strong><br>
+                                    Фото из галереи направления.
+                                {% endif %}
                             </figcaption>
                         </figure>
                         {% endif %}
@@ -98,8 +124,19 @@
                         <figure class="gallery-card">
                             <img src="{{ destination.gallery_image_3.url }}" alt="{{ destination.name }} — фото 3" class="gallery-image">
                             <figcaption>
-                                <strong>{{ destination.name }}</strong><br>
-                                Фото из галереи направления.
+                                {% if destination.slug == "kolomna" %}
+                                    <strong>Исторический центр</strong><br>
+                                    Уютные улицы и спокойная прогулочная атмосфера.
+                                {% elif destination.slug == "tula" %}
+                                    <strong>Тульский пряник</strong><br>
+                                    Местный символ и важная часть впечатления от поездки.
+                                {% elif destination.slug == "kazan" %}
+                                    <strong>Татарская кухня</strong><br>
+                                    Местный колорит, ради которого в Казани стоит сделать отдельную остановку.
+                                {% else %}
+                                    <strong>{{ destination.name }}</strong><br>
+                                    Фото из галереи направления.
+                                {% endif %}
                             </figcaption>
                         </figure>
                         {% endif %}

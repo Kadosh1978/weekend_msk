@@ -4,22 +4,24 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <title>{% block title %}Выходные из Москвы{% endblock %}</title>
     <meta name="description" content="{% block meta_description %}Маршруты и направления для коротких поездок из Москвы на 1–3 дня.{% endblock %}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Короткие поездки из Москвы на 1–3 дня">
+
     <meta name="keywords" content="поездки из Москвы, маршруты, travel, выходные">
     <meta name="author" content="weekend_msk">
 
-    <meta property="og:title" content="">
-    <meta property="og:image" content="">
-    <meta property="og:url" content="">
-    <meta property="og:site_name" content="">
-    <meta property="og:description" content="">
-    <meta name="twitter:title" content="">
-    <meta name="twitter:image" content="">
-    <meta name="twitter:url" content="">
-    <meta name="twitter:card" content="">
+    <meta property="og:title" content="{% block og_title %}Выходные из Москвы{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{% endblock %}">
+    <meta property="og:url" content="{% block og_url %}{% endblock %}">
+    <meta property="og:site_name" content="Выходные из Москвы">
+    <meta property="og:description" content="{% block og_description %}Маршруты и направления для коротких поездок из Москвы на 1–3 дня.{% endblock %}">
+
+    <meta name="twitter:title" content="{% block twitter_title %}Выходные из Москвы{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{% endblock %}">
+    <meta name="twitter:url" content="{% block twitter_url %}{% endblock %}">
+    <meta name="twitter:card" content="summary_large_image">
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
 
@@ -32,10 +34,7 @@
     <link rel="stylesheet" href="{% static 'traveler/css/owl.carousel.min.css' %}">
     <link rel="stylesheet" href="{% static 'traveler/css/owl.theme.default.min.css' %}">
     <link rel="stylesheet" href="{% static 'traveler/css/style.css' %}">
-
-    {# Твои текущие стили оставляем последними, чтобы ничего не сломать #}
-    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
-     <link rel="stylesheet" href="{% static 'css/traveler_bridge.css' %}">
+    <link rel="stylesheet" href="{% static 'css/traveler_bridge.css' %}">
 
     <script src="{% static 'traveler/js/modernizr-2.6.2.min.js' %}"></script>
 </head>
@@ -52,6 +51,7 @@
                             <a href="/">Выходные из Москвы</a>
                         </div>
                     </div>
+
                     <div class="col-xs-8 text-right menu-1">
                         <ul>
                             <li><a href="/">Главная</a></li>
