@@ -8,7 +8,9 @@
 
 {% block content %}
 
-{% if route.destination.slug == "kolomna" %}
+{% if route.destination.hero_image %}
+<section class="destination-hero destination-hero--photo" style="background-image: linear-gradient(rgba(20, 32, 44, 0.52), rgba(20, 32, 44, 0.52)), url('{{ route.destination.hero_image.url }}');">
+{% elif route.destination.slug == "kolomna" %}
 <section class="destination-hero destination-hero--photo" style="background-image: linear-gradient(rgba(20, 32, 44, 0.52), rgba(20, 32, 44, 0.52)), url(/static/traveler/images/destinations/kolomna/kolomna_hero.jpg);">
 {% elif route.destination.slug == "tula" %}
 <section class="destination-hero destination-hero--photo" style="background-image: linear-gradient(rgba(20, 32, 44, 0.52), rgba(20, 32, 44, 0.52)), url(/static/traveler/images/destinations/tula/tula_hero.jpg);">
@@ -74,6 +76,92 @@
                 </div>
             </div>
         </div>
+
+        {% if route.route_image_1 or route.route_image_2 or route.route_image_3 %}
+        <div class="card" style="margin-bottom: 30px;">
+            <h2 class="section-title" style="font-size: 32px; margin-bottom: 18px;">Маршрут в фотографиях</h2>
+
+            <div class="gallery-grid">
+                {% if route.route_image_1 %}
+                <figure class="gallery-card">
+                    <img src="{{ route.route_image_1.url }}" alt="{{ route.title }} — фото маршрута 1" class="gallery-image">
+                    <figcaption>
+                        <strong>Точка маршрута</strong><br>
+                        {% if route.route_image_1_caption %}
+                            {{ route.route_image_1_caption }}
+                        {% else %}
+                            Первая фотография маршрута.
+                        {% endif %}
+                    </figcaption>
+                </figure>
+                {% endif %}
+
+                {% if route.route_image_2 %}
+                <figure class="gallery-card">
+                    <img src="{{ route.route_image_2.url }}" alt="{{ route.title }} — фото маршрута 2" class="gallery-image">
+                    <figcaption>
+                        <strong>Деталь поездки</strong><br>
+                        {% if route.route_image_2_caption %}
+                            {{ route.route_image_2_caption }}
+                        {% else %}
+                            Вторая фотография маршрута.
+                        {% endif %}
+                    </figcaption>
+                </figure>
+                {% endif %}
+
+                {% if route.route_image_3 %}
+                <figure class="gallery-card">
+                    <img src="{{ route.route_image_3.url }}" alt="{{ route.title }} — фото маршрута 3" class="gallery-image">
+                    <figcaption>
+                        <strong>Атмосфера маршрута</strong><br>
+                        {% if route.route_image_3_caption %}
+                            {{ route.route_image_3_caption }}
+                        {% else %}
+                            Третья фотография маршрута.
+                        {% endif %}
+                    </figcaption>
+                </figure>
+                {% endif %}
+            </div>
+        </div>
+        {% elif route.destination.gallery_image_1 or route.destination.gallery_image_2 or route.destination.gallery_image_3 %}
+        <div class="card" style="margin-bottom: 30px;">
+            <h2 class="section-title" style="font-size: 32px; margin-bottom: 18px;">Маршрут в фотографиях</h2>
+
+            <div class="gallery-grid">
+                {% if route.destination.gallery_image_1 %}
+                <figure class="gallery-card">
+                    <img src="{{ route.destination.gallery_image_1.url }}" alt="{{ route.destination.name }} — фото маршрута 1" class="gallery-image">
+                    <figcaption>
+                        <strong>{{ route.destination.name }}</strong><br>
+                        Фото из галереи направления.
+                    </figcaption>
+                </figure>
+                {% endif %}
+
+                {% if route.destination.gallery_image_2 %}
+                <figure class="gallery-card">
+                    <img src="{{ route.destination.gallery_image_2.url }}" alt="{{ route.destination.name }} — фото маршрута 2" class="gallery-image">
+                    <figcaption>
+                        <strong>{{ route.destination.name }}</strong><br>
+                        Фото из галереи направления.
+                    </figcaption>
+                </figure>
+                {% endif %}
+
+                {% if route.destination.gallery_image_3 %}
+                <figure class="gallery-card">
+                    <img src="{{ route.destination.gallery_image_3.url }}" alt="{{ route.destination.name }} — фото маршрута 3" class="gallery-image">
+                    <figcaption>
+                        <strong>{{ route.destination.name }}</strong><br>
+                        Фото из галереи направления.
+                    </figcaption>
+                </figure>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
 
         <div class="card" style="margin-bottom: 30px;">
             <h2 class="section-title" style="font-size: 32px; margin-bottom: 18px;">Что входит в маршрут</h2>
