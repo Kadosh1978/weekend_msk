@@ -34,23 +34,50 @@ class Destination(models.Model):
         blank=True,
         null=True,
     )
+    hero_image_caption = models.CharField(
+        "Подпись к Hero",
+        max_length=255,
+        blank=True,
+        default="",
+    )
+
     gallery_image_1 = models.ImageField(
         "Галерея фото 1",
         upload_to="destinations/gallery/",
         blank=True,
         null=True,
     )
+    gallery_image_1_caption = models.CharField(
+        "Подпись к фото 1",
+        max_length=255,
+        blank=True,
+        default="",
+    )
+
     gallery_image_2 = models.ImageField(
         "Галерея фото 2",
         upload_to="destinations/gallery/",
         blank=True,
         null=True,
     )
+    gallery_image_2_caption = models.CharField(
+        "Подпись к фото 2",
+        max_length=255,
+        blank=True,
+        default="",
+    )
+
     gallery_image_3 = models.ImageField(
         "Галерея фото 3",
         upload_to="destinations/gallery/",
         blank=True,
         null=True,
+    )
+    gallery_image_3_caption = models.CharField(
+        "Подпись к фото 3",
+        max_length=255,
+        blank=True,
+        default="",
     )
 
     is_published = models.BooleanField("Опубликовано", default=True)

@@ -88,7 +88,7 @@
                     <figcaption>
                         <strong>Точка маршрута</strong><br>
                         {% if route.route_image_1_caption %}
-                            {{ route.route_image_1_caption }}
+                            {{ route.route_image_1_caption|safe }}
                         {% else %}
                             Первая фотография маршрута.
                         {% endif %}
@@ -102,7 +102,7 @@
                     <figcaption>
                         <strong>Деталь поездки</strong><br>
                         {% if route.route_image_2_caption %}
-                            {{ route.route_image_2_caption }}
+                            {{ route.route_image_2_caption|safe }}
                         {% else %}
                             Вторая фотография маршрута.
                         {% endif %}
@@ -116,7 +116,7 @@
                     <figcaption>
                         <strong>Атмосфера маршрута</strong><br>
                         {% if route.route_image_3_caption %}
-                            {{ route.route_image_3_caption }}
+                            {{ route.route_image_3_caption|safe }}
                         {% else %}
                             Третья фотография маршрута.
                         {% endif %}
