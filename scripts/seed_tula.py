@@ -138,21 +138,21 @@ route, route_created = Route.objects.update_or_create(
 save_image_if_empty(
     route,
     "route_image_1",
-    "Tula Kremlin aerial view.jpg",
+    "Aerial photographs of Tula Kremlin.jpg",
     "tula_route_1.jpg",
 )
 
 save_image_if_empty(
     route,
     "route_image_2",
-    "Muzey oruzhiya Tula.jpg",
+    "Tula State Museum of Weapons 2018.jpg",
     "tula_route_2.jpg",
 )
 
 save_image_if_empty(
     route,
     "route_image_3",
-    "Kazan Embankment Tula.jpg",
+    "Aerial photographs of Tula Kremlin 02.jpg",
     "tula_route_3.jpg",
 )
 
