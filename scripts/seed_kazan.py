@@ -1,5 +1,6 @@
 from urllib.parse import quote
 from urllib.request import Request, urlopen
+import time
 
 from django.core.files.base import ContentFile
 
@@ -12,14 +13,12 @@ COMMONS_FILE_URL = "https://commons.wikimedia.org/wiki/Special:Redirect/file/"
 
 def download_commons_file(filename):
     url = COMMONS_FILE_URL + quote(filename)
-
     request = Request(
         url,
         headers={
             "User-Agent": "weekend-msk-content-seed/1.0"
         },
     )
-
     with urlopen(request, timeout=40) as response:
         return response.read()
 
@@ -39,8 +38,10 @@ def save_image_if_empty(obj, field_name, commons_filename, local_filename):
 
     field.save(local_filename, ContentFile(image_data), save=True)
     print(f"OK: добавлено фото {field_name}: {local_filename}")
+    time.sleep(3)   # пауза, чтобы не получить HTTP 429
 
 
+# =================== НАПРАВЛЕНИЕ ===================
 destination, created = Destination.objects.update_or_create(
     slug="kazan",
     defaults={
@@ -81,9 +82,15 @@ destination, created = Destination.objects.update_or_create(
         "days_count": "2 дня",
         "transport_type": "plane",
         "is_published": True,
+        # Подписи к фотографиям направления (НОВОЕ)
+        "hero_image_caption": "<strong>Казанский кремль</strong><br>Главная историческая точка города и обязательное место для первой прогулки.",
+        "gallery_image_1_caption": "<strong>Казанский кремль</strong><br>Главная историческая достопримечательность города.",
+        "gallery_image_2_caption": "<strong>Центр Казани</strong><br>Пешеходные улицы, атмосфера города и удобный маршрут для прогулки.",
+        "gallery_image_3_caption": "<strong>Татарская кухня</strong><br>Местный колорит, ради которого в Казани стоит сделать отдельную остановку.",
     },
 )
 
+# =================== МАРШРУТ (оставляем как было, подписи уже есть) ===================
 route, route_created = Route.objects.update_or_create(
     slug="kazan-na-2-dnya",
     defaults={
@@ -111,13 +118,13 @@ route, route_created = Route.objects.update_or_create(
             "Для самостоятельного путешествия"
         ),
         "route_image_1_caption": (
-            "Казанский кремль и мечеть Кул-Шариф — главные символы города."
+            "<strong>Казанский кремль</strong><br>Главная историческая точка маршрута и лучший старт прогулки."
         ),
         "route_image_2_caption": (
-            "Улица Баумана — центр городской жизни и прогулок."
+            "<strong>Улица Баумана</strong><br>Центр городской жизни и прогулок."
         ),
         "route_image_3_caption": (
-            "Центр семьи «Казан» и набережная особенно красивы вечером."
+            "<strong>Центр семьи «Казан»</strong><br>Современный символ города, особенно красивый вечером."
         ),
         "content": (
             "День 1.\n"
@@ -138,24 +145,25 @@ route, route_created = Route.objects.update_or_create(
     },
 )
 
+# =================== ЗАГРУЗКА ФОТО (файлы менять не нужно) ===================
 save_image_if_empty(
     route,
     "route_image_1",
-    "Kul Sharif Mosque and Kazan Kremlin.jpg",
+    "Kazan Kremlin. Qolşärif Mosque P8111900 2900.jpg",
     "kazan_route_1.jpg",
 )
 
 save_image_if_empty(
     route,
     "route_image_2",
-    "Bauman Street, Kazan.jpg",
+    "Bauman Street.jpg",
     "kazan_route_2.jpg",
 )
 
 save_image_if_empty(
     route,
     "route_image_3",
-    "Kazan Family Center at night.jpg",
+    "Kazan Family center (February 2026).jpg",
     "kazan_route_3.jpg",
 )
 
