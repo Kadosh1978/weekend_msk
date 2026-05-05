@@ -62,7 +62,9 @@
         {% if routes.has_other_pages %}
             <div style="margin-top: 32px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
                 {% if routes.has_previous %}
-                    <a href="?page={{ routes.previous_page_number }}" class="btn btn-white btn-sm" style="text-decoration: none;">
+                    <a href="?page={{ routes.previous_page_number }}"
+                       class="btn btn-primary btn-sm"
+                       style="color: #ffffff !important; text-decoration: none;">
                         ← Назад
                     </a>
                 {% endif %}
@@ -72,7 +74,9 @@
                 </span>
 
                 {% if routes.has_next %}
-                    <a href="?page={{ routes.next_page_number }}" class="btn btn-primary btn-sm" style="color: #ffffff !important; text-decoration: none;">
+                    <a href="?page={{ routes.next_page_number }}"
+                       class="btn btn-primary btn-sm"
+                       style="color: #ffffff !important; text-decoration: none;">
                         Вперёд →
                     </a>
                 {% endif %}
