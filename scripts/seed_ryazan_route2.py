@@ -123,6 +123,7 @@ save_image_if_empty(
     "ryazan_route2_1.jpg",
 )
 
+
 save_image_if_empty(
     route,
     "route_image_2",
