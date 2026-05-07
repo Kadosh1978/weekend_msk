@@ -1,4 +1,6 @@
 # Получаем уже существующее направление (Рязань должна быть создана ранее)
+# Получаем уже существующее направление (Рязань должна быть создана ранее)
+
 from urllib.parse import quote
 from urllib.request import Request, urlopen
 import time
@@ -10,6 +12,7 @@ from routes.models import Route
 
 
 COMMONS_FILE_URL = "https://commons.wikimedia.org/wiki/Special:Redirect/file/"
+
 
 
 def download_commons_file(filename):
