@@ -1,3 +1,4 @@
+# Получаем уже существующее направление (Рязань должна быть создана ранее)
 from urllib.parse import quote
 from urllib.request import Request, urlopen
 import time
