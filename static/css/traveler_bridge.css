@@ -17,28 +17,106 @@ body {
     background: #e4ece7 !important;
 }
 
+
+/* ===== Заголовки секций ===== */
+
 .section-head {
-    margin-bottom: 30px;
+    margin-bottom: 38px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(23, 32, 51, 0.08);
+}
+
+.section-head--split {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 30px;
+}
+
+.section-head-text {
+    max-width: 760px;
 }
 
 .section-kicker {
-    margin: 0 0 10px;
-    font-size: 13px;
-    font-weight: 700;
+    display: inline-block;
+    margin: 0 0 12px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(0, 216, 192, 0.10);
+    color: #00a891;
+    font-size: 12px;
+    font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: #00d8c0;
+    line-height: 1;
+}
+
+.section-title {
+    margin: 0;
+    font-size: 42px;
+    line-height: 1.15;
+    font-weight: 700;
+    color: #1f1f1f;
+}
+
+.section-head-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 22px;
+    border-radius: 999px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 216, 192, 0.18);
+    color: #172033 !important;
+    text-decoration: none !important;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.section-head-cta__arrow {
+    color: #00bfa6;
+    font-size: 16px;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.section-head-cta:hover,
+.section-head-cta:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.10);
+    border-color: rgba(0, 216, 192, 0.38);
+    color: #00a891 !important;
+    text-decoration: none !important;
+}
+
+.section-head-cta:hover .section-head-cta__arrow,
+.section-head-cta:focus .section-head-cta__arrow {
+    transform: translateX(3px);
 }
 
 .section-kicker--light {
     color: rgba(255, 255, 255, 0.82);
 }
 
-.section-title {
-    margin: 0;
-    font-size: 36px;
-    line-height: 1.2;
-    color: #1f1f1f;
+
+/* ===== Главный экран ===== */
+
+#gtco-header.gtco-cover,
+#gtco-header.home-hero {
+    background-image: url("/static/traveler/images/orig.jpeg") !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-color: transparent !important;
+}
+
+#gtco-header.gtco-cover .overlay,
+#gtco-header.home-hero .overlay {
+    background: rgba(0, 0, 0, 0.45) !important;
 }
 
 
@@ -363,22 +441,27 @@ body {
 .soft-button {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    padding: 12px 18px;
+    padding: 12px 20px;
     border-radius: 999px;
     background: #ffffff;
     border: 1px solid #d9e4ec;
-    color: #1f2937 !important;
+    color: #00bfa6 !important;
     text-decoration: none !important;
-    font-weight: 600;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
     transition: all 0.2s ease;
     box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
 }
 
-.soft-button:hover {
+.soft-button:hover,
+.soft-button:focus {
     transform: translateY(-2px);
-    border-color: #14b8a6;
-    color: #14b8a6 !important;
+    border-color: #00d8c0;
+    color: #00a891 !important;
+    text-decoration: none !important;
     box-shadow: 0 12px 28px rgba(20, 184, 166, 0.14);
 }
 
@@ -517,7 +600,13 @@ body {
     }
 
     .section-title {
-        font-size: 28px;
+        font-size: 32px;
+    }
+
+    .section-head--split {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 18px;
     }
 }
 
@@ -551,5 +640,18 @@ body {
     .gtco-nav ul li a {
         padding: 8px 12px;
         font-size: 14px;
+    }
+
+    .section-head {
+        margin-bottom: 28px;
+        padding-bottom: 14px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .section-head-cta {
+        width: auto;
     }
 }
