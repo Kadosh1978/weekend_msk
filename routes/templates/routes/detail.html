@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load text_extras %}
 
 {% block title %}{{ route.title }} — готовый маршрут из Москвы{% endblock %}
 {% block meta_description %}{{ route.short_description }}{% endblock %}
@@ -39,58 +40,53 @@
             <span class="soft-button" style="cursor: default;">Маршрут</span>
         </div>
 
-        <div class="row" style="margin-bottom: 30px;">
-            <div class="col-md-4">
-                <div class="card" style="margin-bottom: 20px;">
-                    <h3 style="margin-top: 0; margin-bottom: 12px;">Ориентировочное время</h3>
-                    <p class="card-text" style="margin-bottom: 0;">
-                        {% if route.estimated_time %}
-                            {{ route.estimated_time }}
-                        {% else %}
-                            Пока не указано
-                        {% endif %}
-                    </p>
-                </div>
+        <div class="route-summary-grid">
+            <div class="card route-summary-card">
+                <h3>Ориентировочное время</h3>
+                <p class="card-text route-summary-value">
+                    {% if route.estimated_time %}
+                        {{ route.estimated_time }}
+                    {% else %}
+                        Пока не указано
+                    {% endif %}
+                </p>
             </div>
 
-            <div class="col-md-4">
-                <div class="card" style="margin-bottom: 20px;">
-                    <h3 style="margin-top: 0; margin-bottom: 12px;">Подходит кому</h3>
-                    <p class="card-text" style="margin-bottom: 0; white-space: pre-line;">
-                        {% if route.suitable_for %}
-                            {{ route.suitable_for }}
-                        {% else %}
-                            Пока не указано
-                        {% endif %}
-                    </p>
-                </div>
+            <div class="card route-summary-card">
+                <h3>Подходит кому</h3>
+                {% if route.suitable_for %}
+                    <ul class="clean-list clean-list--compact">
+                        {% for item in route.suitable_for|split_lines %}
+                            <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="card-text route-summary-value">Пока не указано</p>
+                {% endif %}
             </div>
 
-            <div class="col-md-4">
-                <div class="card" style="margin-bottom: 20px;">
-                    <h3 style="margin-top: 0; margin-bottom: 12px;">Направление</h3>
-                    <p class="card-text" style="margin-bottom: 16px;">{{ route.destination.name }}</p>
-                    <a href="{{ route.destination.get_absolute_url }}" class="btn btn-primary btn-block" style="color: #ffffff !important; text-decoration: none;">
-                        Открыть страницу направления
-                    </a>
-                </div>
+            <div class="card route-summary-card">
+                <h3>Направление</h3>
+                <p class="card-text" style="margin-bottom: 16px;">{{ route.destination.name }}</p>
+                <a href="{{ route.destination.get_absolute_url }}" class="btn btn-primary btn-block" style="color: #ffffff !important; text-decoration: none;">
+                    Открыть страницу направления
+                </a>
             </div>
         </div>
 
         {% if route.route_image_1 or route.route_image_2 or route.route_image_3 %}
-        <div class="card" style="margin-bottom: 30px;">
-            <h2 class="section-title" style="font-size: 32px; margin-bottom: 18px;">Маршрут в фотографиях</h2>
+        <div class="card route-section-card">
+            <h2 class="section-title section-title--card">Маршрут в фотографиях</h2>
 
             <div class="gallery-grid">
                 {% if route.route_image_1 %}
                 <figure class="gallery-card">
                     <img src="{{ route.route_image_1.url }}" alt="{{ route.title }} — фото маршрута 1" class="gallery-image">
                     <figcaption>
-                        <strong>Точка маршрута</strong><br>
                         {% if route.route_image_1_caption %}
                             {{ route.route_image_1_caption|safe }}
                         {% else %}
-                            Первая фотография маршрута.
+                            <strong>Первая точка маршрута</strong><br>Фото маршрута.
                         {% endif %}
                     </figcaption>
                 </figure>
@@ -100,11 +96,10 @@
                 <figure class="gallery-card">
                     <img src="{{ route.route_image_2.url }}" alt="{{ route.title }} — фото маршрута 2" class="gallery-image">
                     <figcaption>
-                        <strong>Деталь поездки</strong><br>
                         {% if route.route_image_2_caption %}
                             {{ route.route_image_2_caption|safe }}
                         {% else %}
-                            Вторая фотография маршрута.
+                            <strong>Вторая точка маршрута</strong><br>Фото маршрута.
                         {% endif %}
                     </figcaption>
                 </figure>
@@ -114,11 +109,10 @@
                 <figure class="gallery-card">
                     <img src="{{ route.route_image_3.url }}" alt="{{ route.title }} — фото маршрута 3" class="gallery-image">
                     <figcaption>
-                        <strong>Атмосфера маршрута</strong><br>
                         {% if route.route_image_3_caption %}
                             {{ route.route_image_3_caption|safe }}
                         {% else %}
-                            Третья фотография маршрута.
+                            <strong>Третья точка маршрута</strong><br>Фото маршрута.
                         {% endif %}
                     </figcaption>
                 </figure>
@@ -126,16 +120,19 @@
             </div>
         </div>
         {% elif route.destination.gallery_image_1 or route.destination.gallery_image_2 or route.destination.gallery_image_3 %}
-        <div class="card" style="margin-bottom: 30px;">
-            <h2 class="section-title" style="font-size: 32px; margin-bottom: 18px;">Маршрут в фотографиях</h2>
+        <div class="card route-section-card">
+            <h2 class="section-title section-title--card">Маршрут в фотографиях</h2>
 
             <div class="gallery-grid">
                 {% if route.destination.gallery_image_1 %}
                 <figure class="gallery-card">
                     <img src="{{ route.destination.gallery_image_1.url }}" alt="{{ route.destination.name }} — фото маршрута 1" class="gallery-image">
                     <figcaption>
-                        <strong>{{ route.destination.name }}</strong><br>
-                        Фото из галереи направления.
+                        {% if route.destination.gallery_image_1_caption %}
+                            {{ route.destination.gallery_image_1_caption|safe }}
+                        {% else %}
+                            <strong>{{ route.destination.name }}</strong><br>Фото из галереи направления.
+                        {% endif %}
                     </figcaption>
                 </figure>
                 {% endif %}
@@ -144,8 +141,11 @@
                 <figure class="gallery-card">
                     <img src="{{ route.destination.gallery_image_2.url }}" alt="{{ route.destination.name }} — фото маршрута 2" class="gallery-image">
                     <figcaption>
-                        <strong>{{ route.destination.name }}</strong><br>
-                        Фото из галереи направления.
+                        {% if route.destination.gallery_image_2_caption %}
+                            {{ route.destination.gallery_image_2_caption|safe }}
+                        {% else %}
+                            <strong>{{ route.destination.name }}</strong><br>Фото из галереи направления.
+                        {% endif %}
                     </figcaption>
                 </figure>
                 {% endif %}
@@ -154,8 +154,11 @@
                 <figure class="gallery-card">
                     <img src="{{ route.destination.gallery_image_3.url }}" alt="{{ route.destination.name }} — фото маршрута 3" class="gallery-image">
                     <figcaption>
-                        <strong>{{ route.destination.name }}</strong><br>
-                        Фото из галереи направления.
+                        {% if route.destination.gallery_image_3_caption %}
+                            {{ route.destination.gallery_image_3_caption|safe }}
+                        {% else %}
+                            <strong>{{ route.destination.name }}</strong><br>Фото из галереи направления.
+                        {% endif %}
                     </figcaption>
                 </figure>
                 {% endif %}
@@ -163,28 +166,30 @@
         </div>
         {% endif %}
 
-        <div class="card" style="margin-bottom: 30px;">
-            <h2 class="section-title" style="font-size: 32px; margin-bottom: 18px;">Что входит в маршрут</h2>
+        <div class="card route-section-card">
+            <h2 class="section-title section-title--card">Что входит в маршрут</h2>
 
-            <p class="card-text" style="margin-bottom: 0; white-space: pre-line;">
-                {% if route.route_includes %}
-                    {{ route.route_includes }}
-                {% else %}
-                    Пока не заполнено.
-                {% endif %}
-            </p>
+            {% if route.route_includes %}
+                <ul class="clean-list clean-list--two-columns">
+                    {% for item in route.route_includes|split_lines %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="card-text" style="margin-bottom: 0;">Пока не заполнено.</p>
+            {% endif %}
         </div>
 
-        <div class="card" style="margin-bottom: 30px;">
-            <h2 class="section-title" style="font-size: 32px; margin-bottom: 18px;">О маршруте</h2>
+        <div class="card route-section-card">
+            <h2 class="section-title section-title--card">О маршруте</h2>
 
-            <p class="card-text" style="margin-bottom: 0; white-space: pre-line;">
-                {% if route.content %}
-                    {{ route.content }}
-                {% else %}
-                    Полный текст маршрута пока не заполнен.
-                {% endif %}
-            </p>
+            {% if route.content %}
+                <div class="card-text prose-content">
+                    {{ route.content|linebreaks }}
+                </div>
+            {% else %}
+                <p class="card-text" style="margin-bottom: 0;">Полный текст маршрута пока не заполнен.</p>
+            {% endif %}
         </div>
 
         <div class="destination-hero__actions">

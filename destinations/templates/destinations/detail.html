@@ -39,7 +39,7 @@
                     <h2>О направлении</h2>
                     <div class="card prose-card">
                         {% if destination.description %}
-                            <p>{{ destination.description }}</p>
+                            <div class="prose-content">{{ destination.description|linebreaks }}</div>
                         {% else %}
                             <p>Описание пока не заполнено.</p>
                         {% endif %}
@@ -50,7 +50,7 @@
                     <h2>Как добраться</h2>
                     <div class="card prose-card">
                         {% if destination.how_to_get %}
-                            <p>{{ destination.how_to_get }}</p>
+                            <div class="prose-content">{{ destination.how_to_get|linebreaks }}</div>
                         {% else %}
                             <p>Информация пока не заполнена.</p>
                         {% endif %}
@@ -61,7 +61,7 @@
                     <h2>Что посмотреть</h2>
                     <div class="card prose-card">
                         {% if destination.what_to_see %}
-                            <p>{{ destination.what_to_see }}</p>
+                            <div class="prose-content">{{ destination.what_to_see|linebreaks }}</div>
                         {% else %}
                             <p>Информация пока не заполнена.</p>
                         {% endif %}

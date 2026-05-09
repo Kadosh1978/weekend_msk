@@ -655,3 +655,115 @@ body {
         width: auto;
     }
 }
+
+/* ===== Унифицированные страницы маршрутов ===== */
+
+.route-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+.route-summary-card {
+    margin-bottom: 0;
+}
+
+.route-summary-card h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 22px;
+    line-height: 1.25;
+}
+
+.route-summary-value {
+    margin-bottom: 0;
+}
+
+.route-section-card {
+    margin-bottom: 30px;
+}
+
+.section-title--card {
+    font-size: 32px;
+    margin-bottom: 18px;
+}
+
+.clean-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+}
+
+.clean-list--compact {
+    gap: 10px;
+}
+
+.clean-list--two-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 22px;
+}
+
+.clean-list li {
+    position: relative;
+    padding-left: 24px;
+    color: #555;
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+.clean-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.68em;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00d8c0;
+    box-shadow: 0 0 0 5px rgba(0, 216, 192, 0.12);
+}
+
+.prose-content {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.85;
+}
+
+.prose-content p {
+    margin: 0 0 18px;
+}
+
+.prose-content p:last-child {
+    margin-bottom: 0;
+}
+
+.prose-card .prose-content p {
+    margin-bottom: 18px;
+}
+
+.prose-card .prose-content p:last-child {
+    margin-bottom: 0;
+}
+
+.gallery-card figcaption strong {
+    color: #1f1f1f;
+}
+
+@media (max-width: 991px) {
+    .route-summary-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .clean-list--two-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title--card {
+        font-size: 28px;
+    }
+}
