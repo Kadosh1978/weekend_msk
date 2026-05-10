@@ -548,16 +548,48 @@ body {
 .gallery-card {
     background: #ffffff;
     border-radius: 18px;
-    overflow: hidden;
+    overflow: visible;
     box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
     margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.gallery-card:hover,
+.gallery-card:focus-within {
+    z-index: 20;
+}
+
+.gallery-preview {
+    position: relative;
+    height: 135px;
+    border-radius: 18px 18px 0 0;
+    overflow: visible;
 }
 
 .gallery-image {
     width: 100%;
-    height: 220px;
+    height: 135px;
     object-fit: cover;
     display: block;
+    border-radius: 18px 18px 0 0;
+    cursor: zoom-in;
+    position: relative;
+    z-index: 1;
+    transition: width 0.22s ease, height 0.22s ease, transform 0.22s ease, border-radius 0.22s ease, box-shadow 0.22s ease;
+}
+
+.gallery-card:hover .gallery-image,
+.gallery-card:focus-within .gallery-image {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: min(520px, calc(100vw - 40px));
+    height: 340px;
+    transform: translateX(-50%);
+    border-radius: 18px;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.28);
+    z-index: 30;
 }
 
 .gallery-card figcaption {

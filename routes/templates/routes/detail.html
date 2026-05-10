@@ -81,7 +81,9 @@
             <div class="gallery-grid">
                 {% if route.route_image_1 %}
                 <figure class="gallery-card">
-                    <img src="{{ route.route_image_1.url }}" alt="{{ route.title }} — фото маршрута 1" class="gallery-image">
+                    <div class="gallery-preview">
+                        <img src="{{ route.route_image_1.url }}" alt="{{ route.title }} — фото маршрута 1" class="gallery-image">
+                    </div>
                     <figcaption>
                         {% if route.route_image_1_caption %}
                             {{ route.route_image_1_caption|safe }}
@@ -94,7 +96,9 @@
 
                 {% if route.route_image_2 %}
                 <figure class="gallery-card">
-                    <img src="{{ route.route_image_2.url }}" alt="{{ route.title }} — фото маршрута 2" class="gallery-image">
+                    <div class="gallery-preview">
+                        <img src="{{ route.route_image_2.url }}" alt="{{ route.title }} — фото маршрута 2" class="gallery-image">
+                    </div>
                     <figcaption>
                         {% if route.route_image_2_caption %}
                             {{ route.route_image_2_caption|safe }}
@@ -107,7 +111,9 @@
 
                 {% if route.route_image_3 %}
                 <figure class="gallery-card">
-                    <img src="{{ route.route_image_3.url }}" alt="{{ route.title }} — фото маршрута 3" class="gallery-image">
+                    <div class="gallery-preview">
+                        <img src="{{ route.route_image_3.url }}" alt="{{ route.title }} — фото маршрута 3" class="gallery-image">
+                    </div>
                     <figcaption>
                         {% if route.route_image_3_caption %}
                             {{ route.route_image_3_caption|safe }}
@@ -126,7 +132,9 @@
             <div class="gallery-grid">
                 {% if route.destination.gallery_image_1 %}
                 <figure class="gallery-card">
-                    <img src="{{ route.destination.gallery_image_1.url }}" alt="{{ route.destination.name }} — фото маршрута 1" class="gallery-image">
+                    <div class="gallery-preview">
+                        <img src="{{ route.destination.gallery_image_1.url }}" alt="{{ route.destination.name }} — фото маршрута 1" class="gallery-image">
+                    </div>
                     <figcaption>
                         {% if route.destination.gallery_image_1_caption %}
                             {{ route.destination.gallery_image_1_caption|safe }}
@@ -139,7 +147,9 @@
 
                 {% if route.destination.gallery_image_2 %}
                 <figure class="gallery-card">
-                    <img src="{{ route.destination.gallery_image_2.url }}" alt="{{ route.destination.name }} — фото маршрута 2" class="gallery-image">
+                    <div class="gallery-preview">
+                        <img src="{{ route.destination.gallery_image_2.url }}" alt="{{ route.destination.name }} — фото маршрута 2" class="gallery-image">
+                    </div>
                     <figcaption>
                         {% if route.destination.gallery_image_2_caption %}
                             {{ route.destination.gallery_image_2_caption|safe }}
@@ -152,7 +162,9 @@
 
                 {% if route.destination.gallery_image_3 %}
                 <figure class="gallery-card">
-                    <img src="{{ route.destination.gallery_image_3.url }}" alt="{{ route.destination.name }} — фото маршрута 3" class="gallery-image">
+                    <div class="gallery-preview">
+                        <img src="{{ route.destination.gallery_image_3.url }}" alt="{{ route.destination.name }} — фото маршрута 3" class="gallery-image">
+                    </div>
                     <figcaption>
                         {% if route.destination.gallery_image_3_caption %}
                             {{ route.destination.gallery_image_3_caption|safe }}
