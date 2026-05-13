@@ -92,6 +92,15 @@ destination, created = Destination.objects.update_or_create(
             "Бюджет на 1 день: электричка, обед, кофе и 1–2 музея. "
             "Без ночёвки поездка обычно получается недорогой."
         ),
+        "gallery_image_1_caption": (
+            "<strong>Троице-Сергиева лавра</strong><br>Главная точка маршрута и символ Сергиева Посада."
+        ),
+        "gallery_image_2_caption": (
+            "<strong>Успенский собор</strong><br>Одна из самых заметных архитектурных доминант лавры."
+        ),
+        "gallery_image_3_caption": (
+            "<strong>Троицкий собор</strong><br>Ключевая святыня лавры и важная часть прогулки по территории."
+        ),
         "days_count": "1 день",
         "transport_type": "train",
         "is_published": True,

@@ -1,3 +1,4 @@
+
 from urllib.parse import quote
 from urllib.request import Request, urlopen
 
@@ -73,6 +74,15 @@ destination, created = Destination.objects.update_or_create(
         "budget": (
             "Бюджет на 1 день: дорога, обед, музеи и небольшие покупки. "
             "Поездка остаётся комфортной и доступной."
+        ),
+        "gallery_image_1_caption": (
+            "<strong>Тульский кремль</strong><br>Историческое сердце города и логичное начало прогулки."
+        ),
+        "gallery_image_2_caption": (
+            "<strong>Казанская набережная</strong><br>Пространство для прогулки у воды после осмотра центра."
+        ),
+        "gallery_image_3_caption": (
+            "<strong>Тульский пряник</strong><br>Гастрономический символ города и популярный сувенир из поездки."
         ),
         "days_count": "1 день",
         "transport_type": "train",

@@ -1,5 +1,8 @@
 asgiref==3.11.1
 Django==6.0.4
+django-user-agents==0.4.0
+geoip2==5.2.0
 pillow==12.2.0
 python-dotenv==1.2.2
 sqlparse==0.5.5
+user-agents==2.2.0

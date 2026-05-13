@@ -1,11 +1,40 @@
 /* ===== Базовый фон и секции ===== */
 
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     background: #eef3ef !important;
 }
 
 #page {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
     background: transparent !important;
+}
+
+.gtco-container {
+    width: 100%;
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+.gtco-container *,
+.cards,
+.cards *,
+.card,
+.destination-card,
+.destination-card--with-image,
+.destination-card__image,
+.destination-card__image img {
+    box-sizing: border-box;
 }
 
 .section {
@@ -15,6 +44,42 @@ body {
 
 .section-soft {
     background: #e4ece7 !important;
+}
+
+
+/* ===== Исправление потока после hero-блока =====
+
+   В старой теме .gtco-cover объявлен как float: left.
+   Из-за этого следующая секция на главной в Chromium-браузерах
+   может начинаться под hero-блоком: заголовок секции скрывается,
+   а карточки выглядят так, будто прилипли к hero.
+*/
+
+#gtco-header.gtco-cover,
+#gtco-header.home-hero {
+    float: none !important;
+    display: block !important;
+    width: 100% !important;
+    clear: both !important;
+}
+
+#gtco-header.gtco-cover::after,
+#gtco-header.home-hero::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+main,
+.section {
+    display: block;
+    clear: both;
+}
+
+#gtco-header + .section,
+#gtco-header + #destinations,
+#destinations {
+    clear: both !important;
 }
 
 
@@ -112,6 +177,7 @@ body {
     background-position: center center !important;
     background-repeat: no-repeat !important;
     background-color: transparent !important;
+    overflow-x: hidden;
 }
 
 #gtco-header.gtco-cover .overlay,
@@ -124,12 +190,19 @@ body {
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 30px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
 }
 
 .cards-3 {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cards > * {
+    min-width: 0;
 }
 
 .card {
@@ -137,6 +210,8 @@ body {
     border-radius: 8px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
     padding: 28px;
+    max-width: 100%;
+    min-width: 0;
 }
 
 .destination-card h3 {
@@ -152,6 +227,7 @@ body {
     align-items: flex-start;
     gap: 16px;
     margin-bottom: 14px;
+    min-width: 0;
 }
 
 .card-text {
@@ -218,6 +294,65 @@ body {
     font-size: 16px;
     line-height: 1.7;
     max-width: 800px;
+}
+
+
+/* ===== Карточки направлений с фото на странице списка ===== */
+
+.destination-card--with-image {
+    padding: 0;
+    overflow: hidden;
+    min-width: 0;
+    max-width: 100%;
+}
+
+.destination-card__image {
+    position: relative;
+    height: 210px;
+    overflow: hidden;
+    background: #dfe8e4;
+    border-radius: 8px 8px 0 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.destination-card__image img {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+
+.destination-card--with-image:hover .destination-card__image img {
+    transform: scale(1.06);
+}
+
+.destination-card__body {
+    padding: 26px;
+    min-width: 0;
+}
+
+.destination-card--with-image .card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.destination-card--with-image .card-top {
+    margin-bottom: 14px;
+}
+
+.destination-card--with-image .meta-list {
+    margin-top: 18px;
+}
+
+.destination-card--with-image .card-link {
+    display: inline-block;
+    margin-top: 22px;
 }
 
 
@@ -600,94 +735,6 @@ body {
 }
 
 
-/* ===== Адаптив ===== */
-
-@media (max-width: 1100px) {
-    .gallery-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .destination-hero__title {
-        font-size: 44px;
-    }
-
-    .destination-hero__subtitle {
-        font-size: 18px;
-    }
-
-    .content-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 991px) {
-    .cards,
-    .cards-3 {
-        grid-template-columns: 1fr;
-    }
-
-    .promo-box {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .section-title {
-        font-size: 32px;
-    }
-
-    .section-head--split {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 18px;
-    }
-}
-
-@media (max-width: 768px) {
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .destination-hero {
-        padding: 90px 0 80px;
-    }
-
-    .destination-hero__title {
-        font-size: 36px;
-    }
-
-    .destination-hero__subtitle {
-        font-size: 17px;
-    }
-
-    .destination-hero__actions {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .sticky-card {
-        position: static;
-    }
-
-    .gtco-nav #gtco-logo a,
-    .gtco-nav ul li a {
-        padding: 8px 12px;
-        font-size: 14px;
-    }
-
-    .section-head {
-        margin-bottom: 28px;
-        padding-bottom: 14px;
-    }
-
-    .section-title {
-        font-size: 28px;
-    }
-
-    .section-head-cta {
-        width: auto;
-    }
-}
-
 /* ===== Унифицированные страницы маршрутов ===== */
 
 .route-summary-grid {
@@ -784,13 +831,106 @@ body {
     color: #1f1f1f;
 }
 
+
+/* ===== Адаптив ===== */
+
+@media (max-width: 1100px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .destination-hero__title {
+        font-size: 44px;
+    }
+
+    .destination-hero__subtitle {
+        font-size: 18px;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 991px) {
+    .cards,
+    .cards-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .promo-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .section-title {
+        font-size: 32px;
+    }
+
+    .section-head--split {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 18px;
+    }
+
     .route-summary-grid {
         grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .destination-hero {
+        padding: 90px 0 80px;
+    }
+
+    .destination-hero__title {
+        font-size: 36px;
+    }
+
+    .destination-hero__subtitle {
+        font-size: 17px;
+    }
+
+    .destination-hero__actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sticky-card {
+        position: static;
+    }
+
+    .gtco-nav #gtco-logo a,
+    .gtco-nav ul li a {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    .section-head {
+        margin-bottom: 28px;
+        padding-bottom: 14px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .section-head-cta {
+        width: auto;
+    }
+
+    .destination-card__image {
+        height: 190px;
+    }
+
+    .destination-card__body {
+        padding: 22px;
+    }
+
     .clean-list--two-columns {
         grid-template-columns: 1fr;
     }
@@ -798,4 +938,20 @@ body {
     .section-title--card {
         font-size: 28px;
     }
+}
+
+.cards, .cards-3 {
+    display: grid !important;
+}
+.destination-card {
+    display: block !important;
+}
+
+/* Исправление наезда hero-блока на заголовки направлений */
+#destinations {
+    padding-top: 80px !important;
+    margin-top: 0 !important;
+    position: relative !important;
+    z-index: 2 !important;
+    background: #f4f7fb !important; /* или цвет фона твоей страницы */
 }
