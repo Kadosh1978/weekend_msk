@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /admin/
+
+Allow: /
+Allow: /static/
+Allow: /media/
+
+Sitemap: https://weekendmsk.ru/sitemap.xml
